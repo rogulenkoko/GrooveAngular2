@@ -1,0 +1,74 @@
+.navbar{
+    margin-left: 25%;
+    width: 50%;
+}
+
+.body{
+    height: 80%;
+}
+
+.sequencer{
+    margin: 50px;
+}
+.sequencer div{
+    margin-left: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.notes{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.settings{
+    margin: 50px;
+    width:500px;
+    font-size: 25px;
+}
+.size div,.set{
+    display: inline-block;
+    text-align: center;
+}
+
+
+.main-set{
+    position: relative;
+    top:-28px;
+    left: 60px;
+}
+
+.sub-set{
+    position: relative;
+    top:-28px;
+    left: 40px;
+}
+
+.size{
+    width: 80px;
+    border-radius: 10%;
+    border: 1px solid lightgray;
+    cursor: pointer;
+}
+.size-block{
+    width: 200px;
+}
+
+.size-block div{
+    display: inline-block;
+}
+
+.sub-size{
+    width: 80px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    margin: -3px;
+}
+
+.sub-size:hover{
+    border: 1px solid black;
+}
+
+.selected{
+    color: #91170a;
+}

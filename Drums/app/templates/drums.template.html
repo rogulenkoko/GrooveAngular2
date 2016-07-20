@@ -1,0 +1,64 @@
+<div class="navbar navbar-default body" >
+    <div class="settings">
+        <div class="set">
+            <div (click)="upTempo()" > <i class="glyphicon glyphicon-menu-up"></i> </div>
+            <div> {{tempo}} </div>
+            <div (click)="downTempo()"> <i class="glyphicon glyphicon-menu-down"></i> </div>
+        </div>
+        <div (click)="showSizeSettings()" class="set size main-set" (hover)="upTempo()">
+            <div>{{notesCount}}</div>
+            <div><i>/</i></div>
+            <div>{{noteLength}}</div>
+        </div>
+
+        <div *ngIf="sizeSettingsOpen" class="set size-block sub-set">
+            <div (click)="setSize({count:3,length:4})" class="sub-size" >
+                <div>3</div>
+                <div><i>/</i></div>
+                <div>4</div>
+            </div>
+            <div (click)="setSize({count:5,length:4})" class="sub-size" >
+                <div>5</div>
+                <div><i>/</i></div>
+                <div>4</div>
+            </div>
+            <div (click)="setSize({count:4,length:4})" class="sub-size" >
+                <div>4</div>
+                <div><i>/</i></div>
+                <div>4</div>
+            </div>
+            <div (click)="setSize({count:6,length:8})" class="sub-size">
+                <div>6</div>
+                <div><i>/</i></div>
+                <div>8</div>
+            </div>
+        </div>
+    </div>
+        
+    
+
+    <div class="sequencer">
+        <div>
+            <span> Hi-Hat </span>
+            <notes
+             *ngFor="#note of notes, #i = index"
+             [loopUrl]="'app/sound/hat.wav'"
+             [indexNumber]="i+1"
+             [tempo]="tempo"
+
+             ></notes>
+        </div>
+
+         <div>
+            <span> Snare </span>
+            
+        </div>
+
+         <div>
+            <span> Kick </span>
+            
+        </div>
+    </div>
+</div>
+
+
