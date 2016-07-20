@@ -1,4 +1,5 @@
 import {Component,OnInit,Input} from 'angular2/core';
+import {Note} from './note.model';
 
 
 @Component({
@@ -11,6 +12,8 @@ export class NotesComponent implements OnInit{
     @Input() tempo=60;
     loop;
     isChecked=false;
+    isPlaying=false;
+    Play=true;
     checkNote(){
         if(this.isChecked)
             this.isChecked=!this.isChecked;
@@ -18,15 +21,18 @@ export class NotesComponent implements OnInit{
             this.isChecked=!this.isChecked;
             this.loop.play();
         }
-        this.start();
-    }
 
+        
+    }
     start(){
-        while (true) {
-                setTimeout(()=>{
-                    console.log("asd");
-                        },1000);   
-        }
+        setTimeout(()=>{
+            setInterval(()=>{
+                if(this.isChecked){
+                this.loop.play();
+                console.log(this.indexNumber);
+            } 
+        },60*4000/this.tempo)
+        },this.indexNumber*(60*250/this.tempo))
     }
 
     ngOnInit(){

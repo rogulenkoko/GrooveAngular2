@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component,ViewChildren,QueryList} from 'angular2/core';
 import {NotesComponent} from './notes.component';
 
 
@@ -18,6 +18,11 @@ export class DrumsComponent {
     constructor() {
         this.tempo=60;
         this.notes.length=16;
+    }
+    @ViewChildren(NotesComponent) children:QueryList<NotesComponent>;
+    
+    startPLaying(){
+        this.children.toArray().forEach((child)=>child.start());
     }
 
     upTempo(){

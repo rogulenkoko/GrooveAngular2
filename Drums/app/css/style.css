@@ -1,6 +1,6 @@
 .navbar{
-    margin-left: 25%;
-    width: 50%;
+    /*margin-left: 25%;*/
+    width: 100%;
 }
 
 .body{
@@ -71,4 +71,12 @@
 
 .selected{
     color: #91170a;
+}
+
+.playing{
+    border: 2px solid yellow;
+}
+
+.glyphicon-play-circle{
+    font-size: 30px;
 }

@@ -23,6 +23,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.indexNumber = 0;
                     this.tempo = 60;
                     this.isChecked = false;
+                    this.isPlaying = false;
+                    this.Play = true;
                 }
                 NotesComponent.prototype.checkNote = function () {
                     if (this.isChecked)
@@ -31,14 +33,17 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         this.isChecked = !this.isChecked;
                         this.loop.play();
                     }
-                    this.start();
                 };
                 NotesComponent.prototype.start = function () {
-                    while (true) {
-                        setTimeout(function () {
-                            console.log("asd");
-                        }, 1000);
-                    }
+                    var _this = this;
+                    setTimeout(function () {
+                        setInterval(function () {
+                            if (_this.isChecked) {
+                                _this.loop.play();
+                                console.log(_this.indexNumber);
+                            }
+                        }, 60 * 4000 / _this.tempo);
+                    }, this.indexNumber * (60 * 250 / this.tempo));
                 };
                 NotesComponent.prototype.ngOnInit = function () {
                     this.loop = new Audio(this.loopUrl);

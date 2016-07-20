@@ -30,6 +30,9 @@ System.register(['angular2/core', './notes.component'], function(exports_1, cont
                     this.tempo = 60;
                     this.notes.length = 16;
                 }
+                DrumsComponent.prototype.startPLaying = function () {
+                    this.children.toArray().forEach(function (child) { return child.start(); });
+                };
                 DrumsComponent.prototype.upTempo = function () {
                     if (this.tempo <= 200)
                         this.tempo++;
@@ -47,6 +50,10 @@ System.register(['angular2/core', './notes.component'], function(exports_1, cont
                     this.notes.length = sizeSetting.count * (16 / sizeSetting.length);
                     this.sizeSettingsOpen = !this.sizeSettingsOpen;
                 };
+                __decorate([
+                    core_1.ViewChildren(notes_component_1.NotesComponent), 
+                    __metadata('design:type', core_1.QueryList)
+                ], DrumsComponent.prototype, "children", void 0);
                 DrumsComponent = __decorate([
                     core_1.Component({
                         selector: 'drums',

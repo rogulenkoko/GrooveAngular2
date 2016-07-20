@@ -51,14 +51,28 @@
 
          <div>
             <span> Snare </span>
-            
+            <notes
+             *ngFor="#note of notes, #i = index"
+             [loopUrl]="'app/sound/snare.wav'"
+             [indexNumber]="i+1"
+             [tempo]="tempo"
+
+             ></notes>
         </div>
 
          <div>
             <span> Kick </span>
-            
+            <notes
+             *ngFor="#note of notes, #i = index"
+             [loopUrl]="'app/sound/kick.wav'"
+             [indexNumber]="i+1"
+             [tempo]="tempo"
+             ></notes>
         </div>
     </div>
+
+    <button (click)="startPLaying()" class="btn btn-default"><i class="glyphicon glyphicon-play-circle"></i></button>
+
 </div>
 
 
