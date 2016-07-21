@@ -15,24 +15,39 @@ export class DrumsComponent {
     notesCount=4;
     notes=[];
     sizeSettingsOpen=false;
+    isPlaying=false;
+    isMore4x4=false;
     constructor() {
-        this.tempo=60;
+        this.tempo=90;
         this.notes.length=16;
     }
     @ViewChildren(NotesComponent) children:QueryList<NotesComponent>;
     
     startPLaying(){
-        this.children.toArray().forEach((child)=>child.start());
+        if(!this.isPlaying){
+            this.isPlaying=!this.isPlaying;
+       	    this.children.toArray().forEach((child)=>child.start());
+        }
+        else {
+            this.isPlaying=!this.isPlaying;
+            this.children.toArray().forEach((child)=>child.start(true));
+        }
     }
 
-    upTempo(){
-        if(this.tempo<=200)
-            this.tempo++;
+    upTempo(value?){
+        if(this.tempo<=200){
+            if(value)
+                this.tempo+=value;
+            else this.tempo++;
+        }
+            
     }
 
-    downTempo(){
+    downTempo(value?){
         if(this.tempo>40)
-            this.tempo--;
+        if(value)
+            this.tempo-=value;
+        else this.tempo--;
     }
 
     showSizeSettings(){
@@ -40,10 +55,20 @@ export class DrumsComponent {
     }
 
     setSize(sizeSetting){
+        if(sizeSetting.count>sizeSetting.length)
+            this.isMore4x4=true;
+        else this.isMore4x4=false;
         this.noteLength=sizeSetting.length;
         this.notesCount=sizeSetting.count;
         this.notes.length=sizeSetting.count*(16/sizeSetting.length);
         this.sizeSettingsOpen=!this.sizeSettingsOpen;
     }
+    getGefault(){
+        this.children.toArray().forEach((child)=>child.Clear());
+        this.children.toArray().forEach((child)=>child.GetDefault());
+    }
 
+    clear(){
+        this.children.toArray().forEach((child)=>child.Clear());
+    }
 }

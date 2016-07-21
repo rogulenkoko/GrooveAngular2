@@ -1,10 +1,10 @@
 .navbar{
-    /*margin-left: 25%;*/
-    width: 100%;
+    margin-left: 10%;
+    width: 80%;
 }
 
 .body{
-    height: 80%;
+    height: 65%;
 }
 
 .sequencer{
@@ -12,42 +12,48 @@
 }
 .sequencer div{
     margin-left: 10px;
-    margin-bottom: 40px;
+    margin-bottom: 4%;
     font-size: 20px;
 }
 
 .notes{
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 19px;
+}
+
+.notes-ismore{
+    display: inline-block;
+    margin-right: 9px;
 }
 
 .settings{
+    display: inline-block;
     margin: 50px;
     width:500px;
     font-size: 25px;
+    margin-left: 65%;
+    margin-top: -6%;
 }
-.size div,.set{
+.set{
+    height: 55px;
+    margin-left: 12px;
+    display: inline-block;
+    text-align: center;
+}
+.size div{
     display: inline-block;
     text-align: center;
 }
 
-
-.main-set{
-    position: relative;
-    top:-28px;
-    left: 60px;
-}
-
 .sub-set{
-    position: relative;
-    top:-28px;
-    left: 40px;
+    position: absolute;
+    top:73%;
+    left: 49%;
 }
 
 .size{
     width: 80px;
     border-radius: 10%;
-    border: 1px solid lightgray;
     cursor: pointer;
 }
 .size-block{
@@ -59,7 +65,7 @@
 }
 
 .sub-size{
-    width: 80px;
+    width: 70px;
     border: 1px solid lightgray;
     cursor: pointer;
     margin: -3px;
@@ -73,10 +79,64 @@
     color: #91170a;
 }
 
-.playing{
-    border: 2px solid yellow;
-}
 
 .glyphicon-play-circle{
     font-size: 30px;
+}
+
+.bars{
+    width:90%;
+}
+
+
+.play-button{
+    display: inline;
+    margin-top:-5%;
+    margin-left: 75%;
+    width: 100px;
+}
+
+.default-button{
+    display: inline;    
+    margin-top:-5%;
+    margin-left: 5.5%;
+    opacity:0.6;
+    width: 100px;
+    height: 40px;
+}
+
+.playing{
+    color:yellow;
+}
+
+.bars span{
+    display: inline-block;
+    width: 70px;
+}
+
+.set span{
+    font-size: 15px;
+}
+
+footer{
+     height: 0px;
+     margin-top:-3px;
+}
+
+footer span{
+    float:right;
+    margin-right: 16%;
+    margin-top: 10px;
+}
+
+.quarter{
+    font-size: 25px;
+}
+
+i{
+    cursor: pointer;
+}
+
+.tempoSet div{
+    display: inline-block;
 }

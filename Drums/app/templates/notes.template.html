@@ -1,3 +1,8 @@
-<div class="notes">
-    <i [class.selected]="isChecked" [class.playing]="isPlaying" (click)="checkNote()" class="glyphicon-cloud"></i>
+<div [class.notes]="!isMore" [class.notes-ismore]="isMore">
+    <i
+         [class.quarter]="isQuarter"
+         [class.selected]="isChecked"
+         [class.playing]="isPlaying" 
+         (click)="checkNote()" 
+         class="glyphicon glyphicon-oil"></i>
 </div>

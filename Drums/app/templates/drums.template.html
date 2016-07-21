@@ -1,15 +1,84 @@
 <div class="navbar navbar-default body" >
+    <div class="sequencer">
+            <div class="bars">
+                <span> Hi-Hat </span>
+            <notes
+                *ngFor="#note of notes, #i = index"
+                [loopUrl]="'app/sound/hat.wav'"
+                [indexNumber]="i"
+                [tempo]="tempo"
+                [size]="notes.length"
+                [isMore]="isMore4x4"
+             ></notes>
+            </div>         
+            <div class="bars">
+                <span> Snare </span>
+                <notes
+                    *ngFor="#note of notes, #i = index"
+                    [loopUrl]="'app/sound/snare.wav'"
+                    [indexNumber]="i"
+                    [tempo]="tempo"
+                    [size]="notes.length"
+                    [isMore]="isMore4x4"
+                ></notes>
+            </div>
+            <div class="bars">
+                <span> Kick </span>
+                <notes
+                    *ngFor="#note of notes, #i = index"
+                    [loopUrl]="'app/sound/kick.wav'"
+                    [indexNumber]="i"
+                    [tempo]="tempo"
+                    [size]="notes.length"
+                    [isMore]="isMore4x4"
+                ></notes>
+            </div>
+    </div>
+
+    <button (click)="getGefault()" class="btn btn-default default-button">
+        default
+    </button>
+
+    <button style="margin-left:1%" (click)="clear()" class="btn btn-default default-button">
+        clear
+    </button>
+
+    <button (click)="startPLaying()" class="btn btn-default default-button">
+        <i  
+            [class.glyphicon-play]="!isPlaying"
+            [class.glyphicon-pause]="isPlaying"
+            class="glyphicon "
+            style="font-size:20px;"
+            >
+        </i>
+    </button>
+
     <div class="settings">
-        <div class="set">
-            <div (click)="upTempo()" > <i class="glyphicon glyphicon-menu-up"></i> </div>
-            <div> {{tempo}} </div>
-            <div (click)="downTempo()"> <i class="glyphicon glyphicon-menu-down"></i> </div>
+
+        <div (click)="showSizeSettings()" class="set " (hover)="upTempo()">
+                <div class="size main-set">
+                <div>{{notesCount}}</div>
+                <div><i>/</i></div>
+                <div>{{noteLength}}</div>
+            </div>
+            <span>size</span>
         </div>
-        <div (click)="showSizeSettings()" class="set size main-set" (hover)="upTempo()">
-            <div>{{notesCount}}</div>
-            <div><i>/</i></div>
-            <div>{{noteLength}}</div>
+
+        <div class="set ">
+            <div class="tempoSet">
+                <div (click)="downTempo()"
+                    (dblclick)="downTempo(5)" >
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </div>
+                <div> {{tempo}} </div>
+                <div (click)="upTempo()"
+                    (dblclick)="upTempo(5)">
+                    <i class="glyphicon glyphicon-chevron-right"></i> 
+                </div>
+            </div>
+            <span>tempo</span>
         </div>
+        
 
         <div *ngIf="sizeSettingsOpen" class="set size-block sub-set">
             <div (click)="setSize({count:3,length:4})" class="sub-size" >
@@ -27,51 +96,15 @@
                 <div><i>/</i></div>
                 <div>4</div>
             </div>
-            <div (click)="setSize({count:6,length:8})" class="sub-size">
-                <div>6</div>
+            <div (click)="setSize({count:5,length:8})" class="sub-size">
+                <div>5</div>
                 <div><i>/</i></div>
                 <div>8</div>
             </div>
         </div>
     </div>
-        
+
     
-
-    <div class="sequencer">
-        <div>
-            <span> Hi-Hat </span>
-            <notes
-             *ngFor="#note of notes, #i = index"
-             [loopUrl]="'app/sound/hat.wav'"
-             [indexNumber]="i+1"
-             [tempo]="tempo"
-
-             ></notes>
-        </div>
-
-         <div>
-            <span> Snare </span>
-            <notes
-             *ngFor="#note of notes, #i = index"
-             [loopUrl]="'app/sound/snare.wav'"
-             [indexNumber]="i+1"
-             [tempo]="tempo"
-
-             ></notes>
-        </div>
-
-         <div>
-            <span> Kick </span>
-            <notes
-             *ngFor="#note of notes, #i = index"
-             [loopUrl]="'app/sound/kick.wav'"
-             [indexNumber]="i+1"
-             [tempo]="tempo"
-             ></notes>
-        </div>
-    </div>
-
-    <button (click)="startPLaying()" class="btn btn-default"><i class="glyphicon glyphicon-play-circle"></i></button>
 
 </div>
 

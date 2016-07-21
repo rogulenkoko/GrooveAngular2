@@ -27,28 +27,55 @@ System.register(['angular2/core', './notes.component'], function(exports_1, cont
                     this.notesCount = 4;
                     this.notes = [];
                     this.sizeSettingsOpen = false;
-                    this.tempo = 60;
+                    this.isPlaying = false;
+                    this.isMore4x4 = false;
+                    this.tempo = 90;
                     this.notes.length = 16;
                 }
                 DrumsComponent.prototype.startPLaying = function () {
-                    this.children.toArray().forEach(function (child) { return child.start(); });
+                    if (!this.isPlaying) {
+                        this.isPlaying = !this.isPlaying;
+                        this.children.toArray().forEach(function (child) { return child.start(); });
+                    }
+                    else {
+                        this.isPlaying = !this.isPlaying;
+                        this.children.toArray().forEach(function (child) { return child.start(true); });
+                    }
                 };
-                DrumsComponent.prototype.upTempo = function () {
-                    if (this.tempo <= 200)
-                        this.tempo++;
+                DrumsComponent.prototype.upTempo = function (value) {
+                    if (this.tempo <= 200) {
+                        if (value)
+                            this.tempo += value;
+                        else
+                            this.tempo++;
+                    }
                 };
-                DrumsComponent.prototype.downTempo = function () {
+                DrumsComponent.prototype.downTempo = function (value) {
                     if (this.tempo > 40)
-                        this.tempo--;
+                        if (value)
+                            this.tempo -= value;
+                        else
+                            this.tempo--;
                 };
                 DrumsComponent.prototype.showSizeSettings = function () {
                     this.sizeSettingsOpen = !this.sizeSettingsOpen;
                 };
                 DrumsComponent.prototype.setSize = function (sizeSetting) {
+                    if (sizeSetting.count > sizeSetting.length)
+                        this.isMore4x4 = true;
+                    else
+                        this.isMore4x4 = false;
                     this.noteLength = sizeSetting.length;
                     this.notesCount = sizeSetting.count;
                     this.notes.length = sizeSetting.count * (16 / sizeSetting.length);
                     this.sizeSettingsOpen = !this.sizeSettingsOpen;
+                };
+                DrumsComponent.prototype.getGefault = function () {
+                    this.children.toArray().forEach(function (child) { return child.Clear(); });
+                    this.children.toArray().forEach(function (child) { return child.GetDefault(); });
+                };
+                DrumsComponent.prototype.clear = function () {
+                    this.children.toArray().forEach(function (child) { return child.Clear(); });
                 };
                 __decorate([
                     core_1.ViewChildren(notes_component_1.NotesComponent), 

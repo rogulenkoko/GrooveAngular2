@@ -1,5 +1,4 @@
 import {Component,OnInit,Input} from 'angular2/core';
-import {Note} from './note.model';
 
 
 @Component({
@@ -10,10 +9,21 @@ export class NotesComponent implements OnInit{
     @Input() loopUrl;
     @Input() indexNumber=0;
     @Input() tempo=60;
+    @Input() size;
+    @Input() isMore;
+    @Input() isQuarter;
     loop;
     isChecked=false;
-    isPlaying=false;
-    Play=true;
+    groove;
+
+    ngOnInit(){
+        this.loop = new Audio(this.loopUrl);
+        if(this.indexNumber%4==0)
+            this.isQuarter=true;
+        else this.isQuarter=false;
+        this.GetDefault();
+    }
+
     checkNote(){
         if(this.isChecked)
             this.isChecked=!this.isChecked;
@@ -24,18 +34,39 @@ export class NotesComponent implements OnInit{
 
         
     }
-    start(){
+    start(isPlay?){
         setTimeout(()=>{
-            setInterval(()=>{
-                if(this.isChecked){
-                this.loop.play();
-                console.log(this.indexNumber);
-            } 
-        },60*4000/this.tempo)
+            if(!isPlay){
+                this.groove = setInterval(()=>{
+                    if(this.isChecked){
+                    this.loop.play();
+                    } 
+                },60*250*this.size/this.tempo)
+             }
+            else clearInterval(this.groove);
         },this.indexNumber*(60*250/this.tempo))
     }
 
-    ngOnInit(){
-        this.loop = new Audio(this.loopUrl);
+    GetDefault(){
+        if(this.loopUrl=="app/sound/snare.wav" &&(this.indexNumber==4 || this.indexNumber==12)){
+            this.isChecked=true;
+        }
+        if(this.loopUrl=="app/sound/kick.wav"
+         && (this.indexNumber==0 
+         || this.indexNumber==3
+         || this.indexNumber==6
+         || this.indexNumber==9
+         || this.indexNumber==12
+         || this.indexNumber==15
+         )){
+            this.isChecked=true;
+        }
+        if(this.loopUrl=="app/sound/hat.wav" && (this.indexNumber%2==0)){
+            this.isChecked=true;
+        }
+    }
+
+    Clear(){
+        this.isChecked=false;
     }
 }

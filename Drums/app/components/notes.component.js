@@ -23,9 +23,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.indexNumber = 0;
                     this.tempo = 60;
                     this.isChecked = false;
-                    this.isPlaying = false;
-                    this.Play = true;
                 }
+                NotesComponent.prototype.ngOnInit = function () {
+                    this.loop = new Audio(this.loopUrl);
+                    if (this.indexNumber % 4 == 0)
+                        this.isQuarter = true;
+                    else
+                        this.isQuarter = false;
+                    this.GetDefault();
+                };
                 NotesComponent.prototype.checkNote = function () {
                     if (this.isChecked)
                         this.isChecked = !this.isChecked;
@@ -34,19 +40,39 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         this.loop.play();
                     }
                 };
-                NotesComponent.prototype.start = function () {
+                NotesComponent.prototype.start = function (isPlay) {
                     var _this = this;
                     setTimeout(function () {
-                        setInterval(function () {
-                            if (_this.isChecked) {
-                                _this.loop.play();
-                                console.log(_this.indexNumber);
-                            }
-                        }, 60 * 4000 / _this.tempo);
+                        if (!isPlay) {
+                            _this.groove = setInterval(function () {
+                                if (_this.isChecked) {
+                                    _this.loop.play();
+                                }
+                            }, 60 * 250 * _this.size / _this.tempo);
+                        }
+                        else
+                            clearInterval(_this.groove);
                     }, this.indexNumber * (60 * 250 / this.tempo));
                 };
-                NotesComponent.prototype.ngOnInit = function () {
-                    this.loop = new Audio(this.loopUrl);
+                NotesComponent.prototype.GetDefault = function () {
+                    if (this.loopUrl == "app/sound/snare.wav" && (this.indexNumber == 4 || this.indexNumber == 12)) {
+                        this.isChecked = true;
+                    }
+                    if (this.loopUrl == "app/sound/kick.wav"
+                        && (this.indexNumber == 0
+                            || this.indexNumber == 3
+                            || this.indexNumber == 6
+                            || this.indexNumber == 9
+                            || this.indexNumber == 12
+                            || this.indexNumber == 15)) {
+                        this.isChecked = true;
+                    }
+                    if (this.loopUrl == "app/sound/hat.wav" && (this.indexNumber % 2 == 0)) {
+                        this.isChecked = true;
+                    }
+                };
+                NotesComponent.prototype.Clear = function () {
+                    this.isChecked = false;
                 };
                 __decorate([
                     core_1.Input(), 
@@ -60,6 +86,18 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], NotesComponent.prototype, "tempo", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], NotesComponent.prototype, "size", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], NotesComponent.prototype, "isMore", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], NotesComponent.prototype, "isQuarter", void 0);
                 NotesComponent = __decorate([
                     core_1.Component({
                         selector: 'notes',
