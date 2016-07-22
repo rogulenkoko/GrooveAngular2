@@ -22,17 +22,23 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function NotesComponent() {
                     this.indexNumber = 0;
                     this.tempo = 60;
-                    this.isChecked = false;
                 }
                 NotesComponent.prototype.ngOnInit = function () {
                     this.loop = new Audio(this.loopUrl);
+                    //сомнительная динамика 
+                    if (this.loopUrl == "app/sound/hat.wav") {
+                        if (this.indexNumber == 2 || this.indexNumber == 6 || this.indexNumber == 10 || this.indexNumber == 14)
+                            this.loop.volume = 0.6;
+                        if (this.indexNumber % 2 != 0)
+                            this.loop.volume = 0.4;
+                    }
                     if (this.indexNumber % 4 == 0)
                         this.isQuarter = true;
                     else
                         this.isQuarter = false;
                     this.GetDefault();
                 };
-                NotesComponent.prototype.checkNote = function () {
+                NotesComponent.prototype.CheckNote = function () {
                     if (this.isChecked)
                         this.isChecked = !this.isChecked;
                     else {
@@ -40,14 +46,18 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         this.loop.play();
                     }
                 };
-                NotesComponent.prototype.start = function (isPlay) {
+                NotesComponent.prototype.LocalPlay = function () {
+                    if (this.isChecked) {
+                        this.loop.play();
+                    }
+                };
+                NotesComponent.prototype.Start = function (isPlay) {
                     var _this = this;
                     setTimeout(function () {
                         if (!isPlay) {
+                            _this.LocalPlay();
                             _this.groove = setInterval(function () {
-                                if (_this.isChecked) {
-                                    _this.loop.play();
-                                }
+                                _this.LocalPlay();
                             }, 60 * 250 * _this.size / _this.tempo);
                         }
                         else
@@ -55,9 +65,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     }, this.indexNumber * (60 * 250 / this.tempo));
                 };
                 NotesComponent.prototype.GetDefault = function () {
-                    if (this.loopUrl == "app/sound/snare.wav" && (this.indexNumber == 4 || this.indexNumber == 12)) {
+                    if (this.loopUrl == "app/sound/snare.wav" && (this.indexNumber == 4 || this.indexNumber == 12))
                         this.isChecked = true;
-                    }
                     if (this.loopUrl == "app/sound/kick.wav"
                         && (this.indexNumber == 0
                             || this.indexNumber == 3
@@ -67,7 +76,39 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                             || this.indexNumber == 15)) {
                         this.isChecked = true;
                     }
-                    if (this.loopUrl == "app/sound/hat.wav" && (this.indexNumber % 2 == 0)) {
+                    if (this.loopUrl == "app/sound/hat.wav" && (this.indexNumber % 2 == 0))
+                        this.isChecked = true;
+                };
+                NotesComponent.prototype.GetFunky = function () {
+                    if (this.loopUrl == "app/sound/hat.wav")
+                        this.isChecked = true;
+                    if (this.loopUrl == "app/sound/snare.wav" && (this.indexNumber == 4 || this.indexNumber == 12))
+                        this.isChecked = true;
+                    if (this.loopUrl == "app/sound/kick.wav"
+                        && (this.indexNumber == 0
+                            || this.indexNumber == 3
+                            || this.indexNumber == 9
+                            || this.indexNumber == 10
+                            || this.indexNumber == 13))
+                        this.isChecked = true;
+                };
+                NotesComponent.prototype.GetSimple = function () {
+                    if (this.loopUrl == "app/sound/hat.wav" &&
+                        !(this.indexNumber == 3
+                            || this.indexNumber == 7
+                            || this.indexNumber == 11
+                            || this.indexNumber == 15))
+                        this.isChecked = true;
+                    if (this.loopUrl == "app/sound/snare.wav" && (this.indexNumber == 3
+                        || this.indexNumber == 6
+                        || this.indexNumber == 12))
+                        this.isChecked = true;
+                    if (this.loopUrl == "app/sound/kick.wav"
+                        && (this.indexNumber == 0
+                            || this.indexNumber == 8
+                            || this.indexNumber == 9
+                            || this.indexNumber == 11
+                            || this.indexNumber == 13)) {
                         this.isChecked = true;
                     }
                 };

@@ -13,18 +13,26 @@ export class NotesComponent implements OnInit{
     @Input() isMore;
     @Input() isQuarter;
     loop;
-    isChecked=false;
     groove;
-
+    isChecked;
     ngOnInit(){
         this.loop = new Audio(this.loopUrl);
+        //сомнительная динамика 
+        if(this.loopUrl=="app/sound/hat.wav"){
+            if(this.indexNumber==2 || this.indexNumber==6 || this.indexNumber==10 || this.indexNumber==14)
+                this.loop.volume=0.6;
+            if(this.indexNumber%2!=0 )
+                this.loop.volume=0.4; 
+        }
+        
+       
         if(this.indexNumber%4==0)
             this.isQuarter=true;
         else this.isQuarter=false;
         this.GetDefault();
     }
 
-    checkNote(){
+    CheckNote(){
         if(this.isChecked)
             this.isChecked=!this.isChecked;
         else{
@@ -34,13 +42,19 @@ export class NotesComponent implements OnInit{
 
         
     }
-    start(isPlay?){
+
+    LocalPlay(){
+        if(this.isChecked){
+                    this.loop.play();
+        }
+    }
+
+    Start(isPlay?){
         setTimeout(()=>{
             if(!isPlay){
+                this.LocalPlay();
                 this.groove = setInterval(()=>{
-                    if(this.isChecked){
-                    this.loop.play();
-                    } 
+                    this.LocalPlay();
                 },60*250*this.size/this.tempo)
              }
             else clearInterval(this.groove);
@@ -48,9 +62,8 @@ export class NotesComponent implements OnInit{
     }
 
     GetDefault(){
-        if(this.loopUrl=="app/sound/snare.wav" &&(this.indexNumber==4 || this.indexNumber==12)){
+        if(this.loopUrl=="app/sound/snare.wav" &&(this.indexNumber==4 || this.indexNumber==12))
             this.isChecked=true;
-        }
         if(this.loopUrl=="app/sound/kick.wav"
          && (this.indexNumber==0 
          || this.indexNumber==3
@@ -61,7 +74,48 @@ export class NotesComponent implements OnInit{
          )){
             this.isChecked=true;
         }
-        if(this.loopUrl=="app/sound/hat.wav" && (this.indexNumber%2==0)){
+        if(this.loopUrl=="app/sound/hat.wav" && (this.indexNumber%2==0))
+            this.isChecked=true;
+        
+    }
+
+    GetFunky(){
+         if(this.loopUrl=="app/sound/hat.wav")
+                this.isChecked=true;
+        if(this.loopUrl=="app/sound/snare.wav" &&(this.indexNumber==4 || this.indexNumber==12))
+            this.isChecked=true;
+        if(this.loopUrl=="app/sound/kick.wav"
+         && (this.indexNumber==0 
+         || this.indexNumber==3
+         || this.indexNumber==9
+         || this.indexNumber==10
+         || this.indexNumber==13
+         ))
+            this.isChecked=true;
+    }
+
+    GetSimple(){
+        if(this.loopUrl=="app/sound/hat.wav" &&
+         !(
+             this.indexNumber==3
+             || this.indexNumber==7
+             || this.indexNumber==11
+             || this.indexNumber==15
+        ))
+                this.isChecked=true;
+
+        if(this.loopUrl=="app/sound/snare.wav" &&(this.indexNumber==3 
+                || this.indexNumber==6
+                || this.indexNumber==12))
+            this.isChecked=true;
+
+        if(this.loopUrl=="app/sound/kick.wav"
+         && (this.indexNumber==0 
+         || this.indexNumber==8
+         || this.indexNumber==9
+         || this.indexNumber==11
+         || this.indexNumber==13
+         )){
             this.isChecked=true;
         }
     }

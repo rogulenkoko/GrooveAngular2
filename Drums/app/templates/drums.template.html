@@ -1,4 +1,4 @@
-<div class="navbar navbar-default body" >
+<div  class="navbar navbar-default body" >
     <div class="sequencer">
             <div class="bars">
                 <span> Hi-Hat </span>
@@ -35,77 +35,66 @@
             </div>
     </div>
 
-    <button (click)="getGefault()" class="btn btn-default default-button">
-        default
-    </button>
-
-    <button style="margin-left:1%" (click)="clear()" class="btn btn-default default-button">
-        clear
-    </button>
-
-    <button (click)="startPLaying()" class="btn btn-default default-button">
-        <i  
-            [class.glyphicon-play]="!isPlaying"
-            [class.glyphicon-pause]="isPlaying"
-            class="glyphicon "
-            style="font-size:20px;"
-            >
-        </i>
-    </button>
-
     <div class="settings">
+        <button  (click)="StartPlaying()" class="btn btn-default default-button">
+             <i  
+                [class.glyphicon-play]="!isPlaying"
+                [class.glyphicon-pause]="isPlaying"
+                class="glyphicon "
+                style="font-size:20px;"
+            >
+            </i>
+        </button>
 
-        <div (click)="showSizeSettings()" class="set " (hover)="upTempo()">
-                <div class="size main-set">
-                <div>{{notesCount}}</div>
-                <div><i>/</i></div>
-                <div>{{noteLength}}</div>
-            </div>
-            <span>size</span>
-        </div>
+            <form [ngFormModel]="form" class="size-form" >
+                <div class="control groove-select">
+                    <select ngControl="grooveType"
+                            #grooveType="ngForm"
+                            id="grooveType"
+                            class="btn btn-default "
+                            (click)="SetGroove()"
+                            >
 
-        <div class="set ">
+                        <option value="1">benny greb</option>
+                        <option value="2">funky groove</option>
+                        <option value="3">simple groove</option>
+                        <option value="0">clear</option>
+                    </select>
+                    <span>groove</span>
+                </div>
+                <div  class="control"  >
+                    <select [class.opacity]="isPlaying" ngControl="noteSize"
+                            #noteSize="ngForm"
+                            id="noteSize"
+                            class="btn btn-default"
+                            (click)="SetSize()" 
+                            (click)="ShowSizeSettings()"
+                            [disabled] = "isPlaying" 
+                            >
+                                <option value="44" selected>4 / 4</option>
+                                <option value="34"> 3 / 4 </option>
+                                <option value="54" > 5 / 4 </option>
+                                <option value="58"> 5 / 8 </option>
+                    </select>
+                    <span [class.opacity]="isPlaying" style="margin-top:4px;">size</span>
+                </div>
+            </form>
+
+        <div class="set " [class.opacity]="isPlaying">
             <div class="tempoSet">
-                <div (click)="downTempo()"
-                    (dblclick)="downTempo(5)" >
+                <div (click)="DownTempo()"
+                    (dblclick)="DownTempo(5)" >
                     <i class="glyphicon glyphicon-chevron-left"></i>
                 </div>
                 <div> {{tempo}} </div>
-                <div (click)="upTempo()"
-                    (dblclick)="upTempo(5)">
+                <div (click)="UpTempo()"
+                    (dblclick)="UpTempo(5)">
                     <i class="glyphicon glyphicon-chevron-right"></i> 
                 </div>
             </div>
             <span>tempo</span>
         </div>
-        
-
-        <div *ngIf="sizeSettingsOpen" class="set size-block sub-set">
-            <div (click)="setSize({count:3,length:4})" class="sub-size" >
-                <div>3</div>
-                <div><i>/</i></div>
-                <div>4</div>
-            </div>
-            <div (click)="setSize({count:5,length:4})" class="sub-size" >
-                <div>5</div>
-                <div><i>/</i></div>
-                <div>4</div>
-            </div>
-            <div (click)="setSize({count:4,length:4})" class="sub-size" >
-                <div>4</div>
-                <div><i>/</i></div>
-                <div>4</div>
-            </div>
-            <div (click)="setSize({count:5,length:8})" class="sub-size">
-                <div>5</div>
-                <div><i>/</i></div>
-                <div>8</div>
-            </div>
-        </div>
     </div>
-
-    
-
 </div>
 
 

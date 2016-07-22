@@ -1,14 +1,19 @@
 .navbar{
-    margin-left: 10%;
-    width: 80%;
+    margin-left: 15%;
+    width: 70%;
 }
 
 .body{
+    padding-top: 5%;
+    text-align: center;
+    min-height: 500px;
     height: 65%;
 }
 
 .sequencer{
-    margin: 50px;
+    display: inline-block;
+    margin: 0 auto;
+    width: 980px;
 }
 .sequencer div{
     margin-left: 10px;
@@ -28,15 +33,18 @@
 
 .settings{
     display: inline-block;
-    margin: 50px;
-    width:500px;
-    font-size: 25px;
-    margin-left: 65%;
-    margin-top: -6%;
+    position: relative;
+    width:1000px;
+    font-size: 22px;
 }
+.opacity{
+    opacity: 0.5;
+}
+
 .set{
+    position: relative;   
+    top:8px;
     height: 55px;
-    margin-left: 12px;
     display: inline-block;
     text-align: center;
 }
@@ -44,20 +52,17 @@
     display: inline-block;
     text-align: center;
 }
-
-.sub-set{
-    position: absolute;
-    top:73%;
-    left: 49%;
-}
-
 .size{
     width: 80px;
     border-radius: 10%;
     cursor: pointer;
 }
 .size-block{
-    width: 200px;
+    width: 80px;
+}
+
+.size-block select{
+    display: block;
 }
 
 .size-block div{
@@ -71,6 +76,38 @@
     margin: -3px;
 }
 
+.size-form{
+    position: relative;
+    top:10px;
+    display: inline-block;
+    width: 215px;
+    height: 30px;
+}
+
+.groove-select{
+    position: relative;
+    left: -20px;
+}
+
+#noteSize{
+    position: relative;
+    top:5px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.control{
+    display: inline-block;
+}
+
+.control div,span{
+    display: block;
+}
+
+.size-form span{
+    font-size: 15px;
+}
+
 .sub-size:hover{
     border: 1px solid black;
 }
@@ -78,7 +115,6 @@
 .selected{
     color: #91170a;
 }
-
 
 .glyphicon-play-circle{
     font-size: 30px;
@@ -88,21 +124,13 @@
     width:90%;
 }
 
-
-.play-button{
-    display: inline;
-    margin-top:-5%;
-    margin-left: 75%;
-    width: 100px;
-}
-
 .default-button{
-    display: inline;    
-    margin-top:-5%;
-    margin-left: 5.5%;
-    opacity:0.6;
+    display: inline; 
+    position: relative;   
+    left:-260px;
+    top:-15px;
+    margin-left: 30px;
     width: 100px;
-    height: 40px;
 }
 
 .playing{
@@ -120,13 +148,20 @@
 
 footer{
      height: 0px;
-     margin-top:-3px;
+     margin-top:-5px;
 }
 
 footer span{
-    float:right;
-    margin-right: 16%;
-    margin-top: 10px;
+    position: relative;
+    top:10px;
+    left: 80%;
+    -webkit-user-select:none;
+}
+
+span, i, div{
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-user-select:none;
 }
 
 .quarter{
@@ -139,4 +174,38 @@ i{
 
 .tempoSet div{
     display: inline-block;
+}
+
+.sub-size span{
+    font-size: 10px;
+}
+
+
+.name{
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 80px;
+    font-size: 16px;
+    padding: 7px;
+}
+form{
+
+}
+.name:hover{
+    background-color:  #A9A9A9;
+    cursor: pointer;
+}
+
+.grooves{
+    display: inline-block;
+}
+
+button,select{
+    opacity: 0.7;
+    text-align: center;
+}
+
+html {
+    overflow:  hidden;
 }
