@@ -136,7 +136,6 @@ export class DrumsComponent {
     }
     Clear(){
         this.childrenNotes.toArray().forEach((child)=>child.Clear());
-        this.SetInSize(4,4,0);
-        this.StartPlaying();
+        this.SetInSize(4,4,44);
     }
 }

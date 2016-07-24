@@ -138,8 +138,7 @@ System.register(['angular2/core', 'angular2/common', './notes.component'], funct
                 };
                 DrumsComponent.prototype.Clear = function () {
                     this.childrenNotes.toArray().forEach(function (child) { return child.Clear(); });
-                    this.SetInSize(4, 4, 0);
-                    this.StartPlaying();
+                    this.SetInSize(4, 4, 44);
                 };
                 __decorate([
                     core_1.ViewChildren(notes_component_1.NotesComponent), 
