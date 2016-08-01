@@ -16,7 +16,8 @@ export class NotesComponent implements OnInit{
     groove;
     isChecked;
     ngOnInit(){
-        this.loop = new Audio(this.loopUrl);
+        if(this.loopUrl!="non")
+            this.loop = new Audio(this.loopUrl);
         //сомнительная динамика 
         if(this.loopUrl=="app/sound/hat.wav"){
             if(this.indexNumber==2 || this.indexNumber==6 || this.indexNumber==10 || this.indexNumber==14)
@@ -24,8 +25,6 @@ export class NotesComponent implements OnInit{
             if(this.indexNumber%2!=0 )
                 this.loop.volume=0.4; 
         }
-        
-       
         if(this.indexNumber%4==0)
             this.isQuarter=true;
         else this.isQuarter=false;
@@ -33,19 +32,25 @@ export class NotesComponent implements OnInit{
     }
 
     CheckNote(){
-        if(this.isChecked)
+        if(this.loopUrl!="non"){
+            if(this.isChecked)
             this.isChecked=!this.isChecked;
-        else{
-            this.isChecked=!this.isChecked;
-            this.loop.play();
+            else{
+                this.isChecked=!this.isChecked;
+                this.loop.play();
+            }
         }
-
-        
     }
 
     LocalPlay(){
-        if(this.isChecked){
-                    this.loop.play();
+        if(this.loopUrl!="non"){
+            if(this.isChecked){
+                        this.loop.play();
+            }
+        }
+        else {
+            this.isChecked=true;
+            setTimeout(()=>this.isChecked=false,60*250/this.tempo)
         }
     }
 

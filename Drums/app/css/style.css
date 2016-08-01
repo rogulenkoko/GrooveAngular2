@@ -1,6 +1,6 @@
 .navbar{
-    margin-left: 15%;
-    width: 70%;
+    margin-left: 10%;
+    width: 80%;
 }
 
 .body{
@@ -21,6 +21,16 @@
     font-size: 20px;
 }
 
+.sequencer span{
+    display: inline-block;
+    width: 70px;
+}
+
+.numbers{
+    height: 10px;
+}
+
+
 .notes{
     display: inline-block;
     margin-right: 19px;
@@ -35,6 +45,8 @@
     display: inline-block;
     position: relative;
     width:1000px;
+    top:-20px;
+    left:30px;
     font-size: 22px;
 }
 .opacity{
@@ -114,15 +126,13 @@
 
 .selected{
     color: #91170a;
+    font-weight: bold;
 }
 
 .glyphicon-play-circle{
     font-size: 30px;
 }
 
-.bars{
-    width:90%;
-}
 
 .default-button{
     display: inline; 
@@ -131,15 +141,6 @@
     top:-15px;
     margin-left: 30px;
     width: 100px;
-}
-
-.playing{
-    color:yellow;
-}
-
-.bars span{
-    display: inline-block;
-    width: 70px;
 }
 
 .set span{
@@ -176,11 +177,6 @@ i{
     display: inline-block;
 }
 
-.sub-size span{
-    font-size: 10px;
-}
-
-
 .name{
     position: relative;
     display: inline-block;
@@ -189,9 +185,7 @@ i{
     font-size: 16px;
     padding: 7px;
 }
-form{
 
-}
 .name:hover{
     background-color:  #A9A9A9;
     cursor: pointer;

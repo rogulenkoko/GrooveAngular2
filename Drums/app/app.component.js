@@ -1,4 +1,4 @@
-System.register(['angular2/core', './components/navbar.component', './components/drums.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './components/navbar.component', './components/drums.component', './components/footer.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './components/navbar.component', './components
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1, drums_component_1;
+    var core_1, navbar_component_1, drums_component_1, footer_component_1;
     var AppComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', './components/navbar.component', './components
             },
             function (drums_component_1_1) {
                 drums_component_1 = drums_component_1_1;
+            },
+            function (footer_component_1_1) {
+                footer_component_1 = footer_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -30,8 +33,8 @@ System.register(['angular2/core', './components/navbar.component', './components
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <navbar></navbar>\n        <drums></drums>\n    ",
-                        directives: [navbar_component_1.NavbarComponent, drums_component_1.DrumsComponent]
+                        template: "\n        <navbar></navbar>\n        <drums></drums>\n        <foot></foot>\n    ",
+                        directives: [navbar_component_1.NavbarComponent, drums_component_1.DrumsComponent, footer_component_1.FooterComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

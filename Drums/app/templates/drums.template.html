@@ -1,17 +1,29 @@
 <div  class="navbar navbar-default body" >
     <div class="sequencer">
-            <div class="bars">
+            <div class="numbers">
+                <span></span>
+                <notes
+                    *ngFor="#note of notes, #i = index"
+                    [loopUrl]="'non'"
+                    [indexNumber]="i"
+                    [tempo]="tempo"
+                    [size]="notes.length"
+                    [isMore]="isMore4x4"
+                ></notes>
+            </div> 
+            <div>
                 <span> Hi-Hat </span>
-            <notes
-                *ngFor="#note of notes, #i = index"
-                [loopUrl]="'app/sound/hat.wav'"
-                [indexNumber]="i"
-                [tempo]="tempo"
-                [size]="notes.length"
-                [isMore]="isMore4x4"
-             ></notes>
-            </div>         
-            <div class="bars">
+                <notes
+                    *ngFor="#note of notes, #i = index"
+                    [loopUrl]="'app/sound/hat.wav'"
+                    [indexNumber]="i"
+                    [tempo]="tempo"
+                    [size]="notes.length"
+                    [isMore]="isMore4x4"
+                ></notes>
+            </div> 
+
+            <div>
                 <span> Snare </span>
                 <notes
                     *ngFor="#note of notes, #i = index"
@@ -22,7 +34,7 @@
                     [isMore]="isMore4x4"
                 ></notes>
             </div>
-            <div class="bars">
+            <div>
                 <span> Kick </span>
                 <notes
                     *ngFor="#note of notes, #i = index"
@@ -33,68 +45,14 @@
                     [isMore]="isMore4x4"
                 ></notes>
             </div>
-    </div>
-
-    <div class="settings">
-        <button  (click)="StartPlaying()" class="btn btn-default default-button">
-             <i  
-                [class.glyphicon-play]="!isPlaying"
-                [class.glyphicon-pause]="isPlaying"
-                class="glyphicon "
-                style="font-size:20px;"
-            >
-            </i>
-        </button>
-
-            <form [ngFormModel]="form" class="size-form" >
-                <div class="control groove-select">
-                    <select ngControl="grooveType"
-                            #grooveType="ngForm"
-                            id="grooveType"
-                            class="btn btn-default "
-                            (click)="SetGroove()"
-                            >
-
-                        <option value="1">benny greb</option>
-                        <option value="2">funky groove</option>
-                        <option value="3">simple groove</option>
-                        <option value="0">clear</option>
-                    </select>
-                    <span>groove</span>
-                </div>
-                <div  class="control"  >
-                    <select [class.opacity]="isPlaying" ngControl="noteSize"
-                            #noteSize="ngForm"
-                            id="noteSize"
-                            class="btn btn-default"
-                            (click)="SetSize()" 
-                            (click)="ShowSizeSettings()"
-                            [disabled] = "isPlaying" 
-                            >
-                                <option value="44" selected>4 / 4</option>
-                                <option value="34"> 3 / 4 </option>
-                                <option value="54" > 5 / 4 </option>
-                                <option value="58"> 5 / 8 </option>
-                    </select>
-                    <span [class.opacity]="isPlaying" style="margin-top:4px;">size</span>
-                </div>
-            </form>
-
-        <div class="set " [class.opacity]="isPlaying">
-            <div class="tempoSet">
-                <div (click)="DownTempo()"
-                    (dblclick)="DownTempo(5)" >
-                    <i class="glyphicon glyphicon-chevron-left"></i>
-                </div>
-                <div> {{tempo}} </div>
-                <div (click)="UpTempo()"
-                    (dblclick)="UpTempo(5)">
-                    <i class="glyphicon glyphicon-chevron-right"></i> 
-                </div>
-            </div>
-            <span>tempo</span>
-        </div>
-    </div>
+    </div>  
+    <settings
+            [isPlaying]="isPlaying"
+            (setSize)="SetSize($event)"
+            (setGroove)="SetGroove($event)"
+            (setTempo)="ChangeTempo($event)"
+            (play)="StartPlaying()"
+    ></settings>
 </div>
 
 

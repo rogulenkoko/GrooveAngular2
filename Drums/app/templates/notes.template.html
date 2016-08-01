@@ -1,8 +1,24 @@
-<div [class.notes]="!isMore" [class.notes-ismore]="isMore">
+<div 
+    [class.notes]="!isMore" 
+    [class.notes-ismore]="isMore"
+    [class.number]="loopUrl=='non'"
+    >
     <i
          [class.quarter]="isQuarter"
          [class.selected]="isChecked"
          (click)="CheckNote()" 
-         class="glyphicon glyphicon-oil">
+         class="glyphicon glyphicon-oil"
+         *ngIf="loopUrl!='non'"
+         >
+    </i>
+     <i
+         [class.quarter]="isQuarter"
+         [class.selected]="isChecked"
+         (click)="CheckNote()" 
+          class="glyphicon"
+          style="width:21px;"
+         *ngIf="loopUrl=='non'"
+         >
+         {{indexNumber+1}}
     </i>
 </div>

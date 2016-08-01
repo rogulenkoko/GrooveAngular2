@@ -24,7 +24,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.tempo = 60;
                 }
                 NotesComponent.prototype.ngOnInit = function () {
-                    this.loop = new Audio(this.loopUrl);
+                    if (this.loopUrl != "non")
+                        this.loop = new Audio(this.loopUrl);
                     //сомнительная динамика 
                     if (this.loopUrl == "app/sound/hat.wav") {
                         if (this.indexNumber == 2 || this.indexNumber == 6 || this.indexNumber == 10 || this.indexNumber == 14)
@@ -39,16 +40,25 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.GetDefault();
                 };
                 NotesComponent.prototype.CheckNote = function () {
-                    if (this.isChecked)
-                        this.isChecked = !this.isChecked;
-                    else {
-                        this.isChecked = !this.isChecked;
-                        this.loop.play();
+                    if (this.loopUrl != "non") {
+                        if (this.isChecked)
+                            this.isChecked = !this.isChecked;
+                        else {
+                            this.isChecked = !this.isChecked;
+                            this.loop.play();
+                        }
                     }
                 };
                 NotesComponent.prototype.LocalPlay = function () {
-                    if (this.isChecked) {
-                        this.loop.play();
+                    var _this = this;
+                    if (this.loopUrl != "non") {
+                        if (this.isChecked) {
+                            this.loop.play();
+                        }
+                    }
+                    else {
+                        this.isChecked = true;
+                        setTimeout(function () { return _this.isChecked = false; }, 60 * 250 / this.tempo);
                     }
                 };
                 NotesComponent.prototype.Start = function (isPlay) {
