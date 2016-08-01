@@ -50,7 +50,6 @@ System.register(['angular2/core', './notes.component', './settings.component'], 
                     this.isMore4x4 = $event.isMore;
                 };
                 DrumsComponent.prototype.SetGroove = function ($event) {
-                    console.log($event);
                     switch ($event.choice) {
                         case "1":
                             this.GetGefault();

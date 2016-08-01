@@ -4,13 +4,13 @@
                 <span></span>
                 <notes
                     *ngFor="#note of notes, #i = index"
-                    [loopUrl]="'non'"
                     [indexNumber]="i"
                     [tempo]="tempo"
                     [size]="notes.length"
                     [isMore]="isMore4x4"
                 ></notes>
             </div> 
+    
             <div>
                 <span> Hi-Hat </span>
                 <notes

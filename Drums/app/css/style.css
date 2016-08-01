@@ -30,7 +30,6 @@
     height: 10px;
 }
 
-
 .notes{
     display: inline-block;
     margin-right: 19px;
@@ -101,7 +100,7 @@
     left: -20px;
 }
 
-#noteSize{
+.note-size{
     position: relative;
     top:5px;
     font-size: 18px;
@@ -120,19 +119,10 @@
     font-size: 15px;
 }
 
-.sub-size:hover{
-    border: 1px solid black;
-}
-
 .selected{
     color: #91170a;
     font-weight: bold;
 }
-
-.glyphicon-play-circle{
-    font-size: 30px;
-}
-
 
 .default-button{
     display: inline; 
@@ -173,22 +163,8 @@ i{
     cursor: pointer;
 }
 
-.tempoSet div{
+.tempo-set div{
     display: inline-block;
-}
-
-.name{
-    position: relative;
-    display: inline-block;
-    width: 150px;
-    height: 80px;
-    font-size: 16px;
-    padding: 7px;
-}
-
-.name:hover{
-    background-color:  #A9A9A9;
-    cursor: pointer;
 }
 
 .grooves{
@@ -203,3 +179,17 @@ button,select{
 html {
     overflow:  hidden;
 }
+
+#slider{
+    position: absolute;
+    margin-left: -10px;
+    margin-top:3px;
+    text-align: left;
+    width: 50px;
+    height: 8px;
+}
+.ui-slider-handle {
+    font-size: 11px;
+} 
+
+

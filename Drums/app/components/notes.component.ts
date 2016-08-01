@@ -1,22 +1,26 @@
-import {Component,OnInit,Input} from 'angular2/core';
+import {Component,OnInit,Input,ViewChild} from 'angular2/core';
+import {SliderComponent} from './slider.component';
 
 
 @Component({
     selector: 'notes',
-    templateUrl:"app/templates/notes.template.html" 
+    templateUrl:"app/templates/notes.template.html",
+    directives:[SliderComponent]
 })
 export class NotesComponent implements OnInit{
     @Input() loopUrl;
     @Input() indexNumber=0;
-    @Input() tempo=60;
+    @Input() tempo;
     @Input() size;
     @Input() isMore;
     @Input() isQuarter;
     loop;
     groove;
     isChecked;
+    volumeIsOpen=false;
+    @ViewChild (SliderComponent) slider : SliderComponent;
     ngOnInit(){
-        if(this.loopUrl!="non")
+        if(this.loopUrl!=undefined)
             this.loop = new Audio(this.loopUrl);
         //сомнительная динамика 
         if(this.loopUrl=="app/sound/hat.wav"){
@@ -31,10 +35,25 @@ export class NotesComponent implements OnInit{
         this.GetDefault();
     }
 
+    SetVolume($event?){
+        if(this.isChecked){
+            if($event==undefined)
+                this.volumeIsOpen=!this.volumeIsOpen;
+            else{
+                this.loop.volume=$event.volume/100;
+                this.slider.slideValue=this.loop.volume;
+            }
+                
+        }
+    }
+
     CheckNote(){
-        if(this.loopUrl!="non"){
-            if(this.isChecked)
-            this.isChecked=!this.isChecked;
+        if(this.loopUrl!=undefined){
+            if(this.isChecked){
+                this.isChecked=!this.isChecked;
+                this.volumeIsOpen=false;
+            }
+                
             else{
                 this.isChecked=!this.isChecked;
                 this.loop.play();
@@ -43,9 +62,9 @@ export class NotesComponent implements OnInit{
     }
 
     LocalPlay(){
-        if(this.loopUrl!="non"){
+        if(this.loopUrl!=undefined){
             if(this.isChecked){
-                        this.loop.play();
+                this.loop.play();
             }
         }
         else {

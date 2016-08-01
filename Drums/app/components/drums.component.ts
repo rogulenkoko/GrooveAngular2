@@ -47,7 +47,6 @@ export class DrumsComponent {
     }
 
     SetGroove($event){
-        console.log($event);
             switch ($event.choice) {
                 case "1":
                     this.GetGefault();

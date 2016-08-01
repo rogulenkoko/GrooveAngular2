@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './slider.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,21 +10,24 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, slider_component_1;
     var NotesComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (slider_component_1_1) {
+                slider_component_1 = slider_component_1_1;
             }],
         execute: function() {
             NotesComponent = (function () {
                 function NotesComponent() {
                     this.indexNumber = 0;
-                    this.tempo = 60;
+                    this.volumeIsOpen = false;
                 }
                 NotesComponent.prototype.ngOnInit = function () {
-                    if (this.loopUrl != "non")
+                    if (this.loopUrl != undefined)
                         this.loop = new Audio(this.loopUrl);
                     //сомнительная динамика 
                     if (this.loopUrl == "app/sound/hat.wav") {
@@ -39,10 +42,22 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                         this.isQuarter = false;
                     this.GetDefault();
                 };
+                NotesComponent.prototype.SetVolume = function ($event) {
+                    if (this.isChecked) {
+                        if ($event == undefined)
+                            this.volumeIsOpen = !this.volumeIsOpen;
+                        else {
+                            this.loop.volume = $event.volume / 100;
+                            this.slider.slideValue = this.loop.volume;
+                        }
+                    }
+                };
                 NotesComponent.prototype.CheckNote = function () {
-                    if (this.loopUrl != "non") {
-                        if (this.isChecked)
+                    if (this.loopUrl != undefined) {
+                        if (this.isChecked) {
                             this.isChecked = !this.isChecked;
+                            this.volumeIsOpen = false;
+                        }
                         else {
                             this.isChecked = !this.isChecked;
                             this.loop.play();
@@ -51,7 +66,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 NotesComponent.prototype.LocalPlay = function () {
                     var _this = this;
-                    if (this.loopUrl != "non") {
+                    if (this.loopUrl != undefined) {
                         if (this.isChecked) {
                             this.loop.play();
                         }
@@ -149,10 +164,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], NotesComponent.prototype, "isQuarter", void 0);
+                __decorate([
+                    core_1.ViewChild(slider_component_1.SliderComponent), 
+                    __metadata('design:type', slider_component_1.SliderComponent)
+                ], NotesComponent.prototype, "slider", void 0);
                 NotesComponent = __decorate([
                     core_1.Component({
                         selector: 'notes',
-                        templateUrl: "app/templates/notes.template.html"
+                        templateUrl: "app/templates/notes.template.html",
+                        directives: [slider_component_1.SliderComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], NotesComponent);

@@ -15,7 +15,6 @@
                 <div class="control groove-select">
                     <select ngControl="grooveType"
                             #grooveType="ngForm"
-                            id="grooveType"
                             class="btn btn-default "
                             (click)="SetGroove()"
                             >
@@ -30,8 +29,7 @@
                 <div  class="control"  >
                     <select [class.opacity]="isPlaying" ngControl="noteSize"
                             #noteSize="ngForm"
-                            id="noteSize"
-                            class="btn btn-default"
+                            class="btn btn-default note-size"
                             (click)="SetSize()" 
                             [disabled] = "isPlaying" 
                             >
@@ -46,7 +44,7 @@
     </form>
 
     <div class="set " [class.opacity]="isPlaying">
-            <div class="tempoSet">
+            <div class="tempo-set">
                 <div (click)="DownTempo()"
                     (dblclick)="DownTempo(5)" >
                     <i class="glyphicon glyphicon-chevron-left"></i>
