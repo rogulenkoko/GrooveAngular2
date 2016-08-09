@@ -40,7 +40,8 @@ export class SettingsComponent {
     }
 
     x=0;
-    SetGroove(){
+    SetGroove($event){
+        console.log($event);
         this.x++;
         if(this.x==2){
             this.setGroove.emit({choice:this.form.controls["grooveType"].value});

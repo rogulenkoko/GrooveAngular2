@@ -35,18 +35,6 @@ export class NotesComponent implements OnInit{
         this.GetDefault();
     }
 
-    SetVolume($event?){
-        if(this.isChecked){
-            if($event==undefined)
-                this.volumeIsOpen=!this.volumeIsOpen;
-            else{
-                this.loop.volume=$event.volume/100;
-                this.slider.slideValue=this.loop.volume;
-            }
-                
-        }
-    }
-
     CheckNote(){
         if(this.loopUrl!=undefined){
             if(this.isChecked){
@@ -83,6 +71,18 @@ export class NotesComponent implements OnInit{
              }
             else clearInterval(this.groove);
         },this.indexNumber*(60*250/this.tempo))
+    }
+
+    SetVolume($event?){
+        if(this.isChecked){
+            if($event==undefined)
+                this.volumeIsOpen=!this.volumeIsOpen;
+            else{
+                this.loop.volume=$event.volume/100;
+                this.slider.slideValue=this.loop.volume;
+            }
+                
+        }
     }
 
     GetDefault(){

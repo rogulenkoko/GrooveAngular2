@@ -1,6 +1,6 @@
 .navbar{
-    margin-left: 10%;
-    width: 80%;
+    margin-left: 5%;
+    width: 90%;
 }
 
 .body{
@@ -13,7 +13,7 @@
 .sequencer{
     display: inline-block;
     margin: 0 auto;
-    width: 980px;
+    width: 900px;
 }
 .sequencer div{
     margin-left: 10px;
